@@ -1,0 +1,91 @@
+.topbarContainer {
+  background-color: #83b7f2;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbarLeft {
+  flex: 3;
+}
+.topbarCenter {
+  flex: 5;
+}
+.topbarRight {
+  flex: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+
+}
+
+.topbarItemIcons{
+    display: flex;
+}
+
+.topbarIconItem{
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 5px;
+}
+
+.topbarImg{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    /* 画像比率をそのままいい感じに */
+    object-fit: cover;
+}
+
+.topbarIconBadge{
+position: absolute;
+top:-5px;
+right: -5px;
+background-color: red;
+width: 15px;
+height: 15px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 11px;
+}
+
+.logo {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.searchBar {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+font-size: 20px !important;
+margin-right: 5px;
+margin-left: 5px;
+}
+
+.searchInput{
+    border: none;
+    width: 80%;
+}
+
+.searchInput:focus{
+   outline: none;
+}
+
