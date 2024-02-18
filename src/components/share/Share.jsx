@@ -1,13 +1,16 @@
 import React from 'react';
 import './Share.css';
 import { Analytics, Face, Gif, Image } from '@mui/icons-material';
+const PUBLICK_FOLDER = process.env.REACT_APP_PUBLICK_FOLDER;
 
 const Share = () => {
   return (
     <div className='share'>
       <div className='shareWrapper'>
         <div className='shareTop'>
-          <img src='/assets/person/1.jpeg' alt='' className='shareProfileImg' />
+          <img  src={
+                PUBLICK_FOLDER + '/person/noAvatar.png'
+                } alt='' className='shareProfileImg' />
           <input
             type='text'
             className='shareInput'

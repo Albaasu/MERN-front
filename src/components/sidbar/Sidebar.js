@@ -11,15 +11,18 @@ import React from 'react';
 import './Sidebar.css';
 import CloseFriend from '../closefriend/CloseFriend';
 import {Users} from"../../dummyData"
+import { Link } from 'react-router-dom';
 
-const Sidbar = () => {
+const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebarWrapper'>
         <ul className='sidebarList'>
           <li className='sidebarListItem'>
             <Home className='sidebarIcon' />
+            <Link to="/" style={{textDecoration:"none",color:"black"}}>
             <span className='sidebarListItemText'>ホーム</span>
+            </Link>
           </li>
           <li className='sidebarListItem'>
             <Search className='sidebarIcon' />
@@ -39,7 +42,9 @@ const Sidbar = () => {
           </li>
           <li className='sidebarListItem'>
             <Person className='sidebarIcon' />
+            <Link to="/profile/shincode" style={{textDecoration:"none",color:"black"}}>
             <span className='sidebarListItemText'>プロフィール</span>
+            </Link>
           </li>
           <li className='sidebarListItem'>
             <Settings className='sidebarIcon' />
@@ -50,7 +55,7 @@ const Sidbar = () => {
         <ul className='sidebarFriendList'>
             {Users.map((user)=>(
 
-  <CloseFriend user={user} key={user.div}/>
+  <CloseFriend user={user} key={user.id}/>
             ))}
         </ul>
       </div>
@@ -58,4 +63,4 @@ const Sidbar = () => {
   );
 };
 
-export default Sidbar;
+export default Sidebar;

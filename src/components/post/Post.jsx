@@ -1,25 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Post.css';
-import { Users } from '../../dummyData';
 import { MoreVert } from '@mui/icons-material';
+import axios from 'axios';
+import { format } from 'timeago.js';
+import { Link } from 'react-router-dom';
 
 const Post = ({ post }) => {
-  // const user = Users.filter((user)=>user.id===1 )
+  const [like, setLike] = useState(post.likes.lenght);
+  const PUBLICK_FOLDER = process.env.REACT_APP_PUBLICK_FOLDER;
+  const [isLiked, setIsLiked] = useState(false);
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const feachUser = async () => {
+      const response = await axios.get(`/users?userId=${post.userId}`)
+      setUser(response.data);
+    };
+    feachUser();
+  }, [post.userId]);
+
+  const handleLike = () => {
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked);
+  };
 
   return (
     <div className='post'>
       <div className='postWrapper'>
         <div className='postTop'>
           <div className='postTopLeft'>
+            <Link to={`/profile/${user.username}`}>
             <img
-              src={Users.filter((user) => user.id === post.id)[0].profilePicture}
+              src={
+                user.profilePicture || PUBLICK_FOLDER + '/person/noAvatar.png'
+              }
               alt=''
               className='postProfileImg'
-            />
-            <span className='postUserName'>
-              {Users.filter((user) => user.id === post.id)[0].username}
-            </span>
-            <span className='postDate'>{post.date}</span>
+              />
+              </Link>
+            <span className='postUserName'>{user.username}</span>
+            <span className='postDate'>{format(post.createdAt)}</span>
           </div>
           <div className='postTopRight'>
             <MoreVert />
@@ -27,12 +48,17 @@ const Post = ({ post }) => {
         </div>
         <div className='postCenter'>
           <span className='postText'>{post.desc}</span>
-          <img src={post.photo} alt='' className='postImg' />
+          <img src={PUBLICK_FOLDER + post.img} alt='' className='postImg' />
         </div>
         <div className='postBottom'>
           <div className='postBottomLeft'>
-            <img src='./assets/heart.png' alt='' className='likeIcon' />
-            <span className='postLikeCounter'>{post.like}がいいねしました</span>
+            <img
+              src={PUBLICK_FOLDER + '/heart.png'}
+              alt=''
+              className='likeIcon'
+              onClick={() => handleLike()}
+            />
+            <span className='postLikeCounter'>{like}人がいいねしました</span>
           </div>
           <div className='postBottomRight'>
             <span className='PostCommentText'>{post.comment}:コメント</span>
