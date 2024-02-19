@@ -25,6 +25,8 @@ const Post = ({ post }) => {
     setIsLiked(!isLiked);
   };
 
+
+  
   return (
     <div className='post'>
       <div className='postWrapper'>
